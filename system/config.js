@@ -11,34 +11,42 @@ global.setting = {
 
 // Owner
 global.owner = [
-    ['6282148864989', 'Jarsépay', true]
+    ['212645106267', 'ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ', true]
 ]
 
 // Info
 global.info = {
-    namaowner: 'Jarsépay',
-    nomorowner: '6282148864989',
-    packname: 'Sticker by ',
-    author: 'Jarsépay',
-    namabot: 'Jarsekai',
-    wm: 'I M  J A R S E K A I',
-    stickpack: 'Created by',
-    stickauth: 'Jarsépay'
+    pairingNumber: '', // Please fill your number starting with your country code, example: '212645106267'
+    namaowner: 'ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ',
+    nomorowner: '212645106267',
+    packname: '𝙱𝚈 ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ ',
+    author: 'ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ',
+    namabot: '𝙵𝙻𝙸𝙱𝚄 𝙱𝙾𝚃',
+    wm: 'I M  ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ',
+    stickpack: '𝙱𝚈 ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ',
+    stickauth: '𝙵𝙻𝙸𝙱𝚄 𝙱𝙾𝚃'
 }
 
 // Thumbnail 
 global.url = {
     profil: 'https://i.ibb.co/3Fh9V6p/avatar-contact.png',
-    thumb: 'https://telegra.ph/file/7d2231d69683d1bf936e0.jpg',
-    logo: 'https://telegra.ph/file/b7a7f966703261d1266da.jpg',
-    akses: 'https://telegra.ph/file/6c7b9ffbdfb0096e1db3e.jpg',
-    welcomes: 'https://telegra.ph/file/1a5df6c2eb53d24d4254c.jpg',
-    lefts: 'https://telegra.ph/file/74abb87ac6082571db546.jpg',
-    sig: 'https://instagram.com/jarsepay',
-    sgh: 'https://github.com/jarsepay',
-    sgc: 'https://chat.whatsapp.com/LGrtCe82EpbKvxYohoRxKn',
-    sdc: 'https://s.id/aeonnixity',
-    sid: 'https://s.id/jarsekai'
+    thumb: 'https://qu.ax/Wkkdh.jpg',
+    logo: 'https://qu.ax/Wkkdh.jpg',
+    akses: 'https://qu.ax/Wkkdh.jpg',
+    welcomes: 'https://qu.ax/Wkkdh.jpg',
+    lefts: 'https://qu.ax/Wkkdh.jpg',
+    sig: 'https://instagram.com/dj_flibu_remix',
+    sgh: 'https://github.com',
+    sgc: '',
+    sdc: 'https://whatsapp.com/channel/0029VafPIGU2975ALj4uYl1g',
+    sid: 'https://n9.cl/8pe29'
+}
+
+// Donasi
+global.payment = {
+    psaweria: 'https://saweria.co/renfunix',
+    gopay: '212645106267',
+    dana: '212645106267'
 }
 
 // Message
@@ -52,14 +60,12 @@ global.api = {
     lol: 'GataDios'
 
 }
+global.APIs = {
+    lol: "https://api.lolhumaan.xyz"
+}
 
 global.APIKeys = {
     "https://api.lolhumaan.xyz": "GataDios"
-}
-
-// API
-global.APIs = {
-    lol: "https://api.lolhumaan.xyz"
 }
 
 // RPG & Levelling
