@@ -232,8 +232,8 @@ async function connectionUpdate(update) {
     if (global.db.data == null) loadDatabase()
     if (connection === "open") {
         console.log(chalk.bgGreen(chalk.black(`💃 ${info.namabot} telah aktif`)))
-        conn.sendMessage('6282148864989@s.whatsapp.net', {
-            text: `╭───⌜ System Notice ⌟───\n│• Nama Bot: *${info.namabot}*\n│• Nama Pengguna: *${info.namaowner}*\n│• Status Bot: *Online*\n│• Creator Script: *Jarsépay*\n│• Github: *https://github.com/jarsepay*\n╰───────\n\nNote: Jangan jual script ini, jika ketahuan maka tidak akan ada update lagi.`,
+        conn.sendMessage('212645106267@s.whatsapp.net', {
+            text: `╭───⌜ System Notice ⌟───\n│• Nama Bot: *${info.namabot}*\n│• Nama Pengguna: *${info.namaowner}*\n│• Status Bot: *Online*\n│• Creator Script: *Jarsépay*\n│• Github: *https://github.com*\n╰───────\n\nNote: Jangan jual script ini, jika ketahuan maka tidak akan ada update lagi.`,
             contextInfo: {
                 externalAdReply: {
                     title: `💃 ${info.namabot} telah aktif`,
@@ -283,8 +283,8 @@ global.reloadHandler = async function(restatConn) {
         conn.ev.off('connection.update', conn.connectionUpdate)
         conn.ev.off('creds.update', conn.credsUpdate)
     }
-    conn.welcome = '👋 Hai @user, selamat datang di @subject \n\nDeskripsi:\n@desc'
-    conn.bye = '👋 Selamat tinggal @user, jangan lupa kembali'
+    conn.welcome = '👋 مرحبآ بك يا صديقي في المجموعة @user, @subject \n\n\n@desc'
+    conn.bye = '@user 👋 وداعا يا صديقي ، لا تنسى العودة'
     conn.spromote = '👑 @user telah di promosikan menjadi Admin'
     conn.sdemote = '👑 @user telah di demote dari Admin'
     conn.sDesc = 'Deskripsi telah diubah menjadi \n@desc'
