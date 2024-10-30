@@ -12,7 +12,7 @@ jarsepay.all = async function(m) {
 		pp = await this.profilePictureUrl(m.sender, 'image')
 	} catch (e) {} finally {
 
-		global.idchannel = '120363239929948380@newsletter'
+		global.idchannel = '120363299366714464@newsletter'
 		global.doc = pickRandom(['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/msword', 'application/pdf'])
 		global.fsizedoc = pickRandom([2000, 3000, 2023000, 2024000])
 
@@ -52,7 +52,7 @@ jarsepay.all = async function(m) {
 				forwardedNewsletterMessageInfo: {
 					'newsletterJid': idchannel,
 					'serverMessageId': 103,
-					'newsletterName': `⌜ ${info.namabot} ⌟  ||  Channel Information`
+					'newsletterName': `⌜ ${info.namabot} ⌟  ||  𝙵𝙻𝙸𝙱𝚄 𝙱𝙾𝚃 𝙲𝙷𝙰𝙽𝙽𝙴𝙻`
 				},
 				externalAdReply: {
 					showAdAttribution: true,
@@ -97,19 +97,19 @@ function date() {
 }
 
 function ucapan() {
-	const time = moment.tz('Asia/Jakarta').format('HH')
-	let res = 'Selamat malam 🌙'
+	const time = moment.tz('Africa/Casablanca').format('HH')
+	let res = 'طاب مساؤك 🌙'
 	if (time >= 4) {
-		res = 'Selamat pagi 🌄'
+		res = 'صباح الخير 🌄'
 	}
 	if (time > 10) {
-		res = 'Selamat siang ☀️'
+		res = 'مساء الخير ☀️'
 	}
 	if (time >= 15) {
-		res = 'Selamat sore 🌇'
+		res = 'مساء الخير 🌇'
 	}
 	if (time >= 18) {
-		res = 'Selamat malam 🌙'
+		res = 'طاب مساؤك 🌙'
 	}
 	return res
 }
