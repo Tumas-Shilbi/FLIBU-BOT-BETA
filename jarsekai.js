@@ -233,7 +233,7 @@ async function connectionUpdate(update) {
     if (connection === "open") {
         console.log(chalk.bgGreen(chalk.black(`💃 ${info.namabot} telah aktif`)))
         conn.sendMessage('212645106267@s.whatsapp.net', {
-            text: `╭───⌜ System Notice ⌟───\n│• Nama Bot: *${info.namabot}*\n│• Nama Pengguna: *${info.namaowner}*\n│• Status Bot: *Online*\n│• Creator Script: *Jarsépay*\n│• Github: *https://github.com*\n╰───────\n\nNote: Jangan jual script ini, jika ketahuan maka tidak akan ada update lagi.`,
+            text: `╭───⌜ System Notice ⌟───\n│• Nama Bot: *${info.namabot}*\n│• Nama Pengguna: *${info.namaowner}*\n│• Status Bot: *Online*\n│• Creator Script: *FLIBU BOT*\n│• Github: *https://github.com*\n╰───────\n\nNote: Jangan jual script ini, jika ketahuan maka tidak akan ada update lagi.`,
             contextInfo: {
                 externalAdReply: {
                     title: `💃 ${info.namabot} telah aktif`,
@@ -285,16 +285,16 @@ global.reloadHandler = async function(restatConn) {
     }
     conn.welcome = '👋 مرحبآ بك يا صديقي في المجموعة @user, @subject \n\n\n@desc'
     conn.bye = '@user 👋 وداعا يا صديقي ، لا تنسى العودة'
-    conn.spromote = '👑 @user telah di promosikan menjadi Admin'
-    conn.sdemote = '👑 @user telah di demote dari Admin'
-    conn.sDesc = 'Deskripsi telah diubah menjadi \n@desc'
-    conn.sSubject = 'Nama grup telah diubah menjadi \n@subject'
-    conn.sIcon = 'Foto profil grup telah diubah!'
-    conn.sRevoke = 'Link grup telah diubah menjadi \n@revoke'
-    conn.sAnnounceOn = 'Grup telah ditutup! sekarang hanya admin yang bisa mengirim pesan.'
-    conn.sAnnounceOff = 'Grup telah dibuka! sekarang semua peserta dapat mengirim pesan.'
-    conn.sRestrictOn = 'Edit info grup telah diubah menjadi only admin!'
-    conn.sRestrictOff = 'Edit info grup telah diubah ke semua peserta!'
+    conn.spromote = '👑 @user تمت ترقيته إلى المشرف'
+    conn.sdemote = '👑 @user تم تخفيض رتبته من المشرف'
+    conn.sDesc = 'تم تغيير الوصف إلى \n@desc'
+    conn.sSubject = 'تم تغيير اسم المجموعة إلى\n@subject'
+    conn.sIcon = 'تم تغيير صورة الملف الشخصي للمجموعة !'
+    conn.sRevoke = 'تم تغيير رابط المجموعة إلى \n@revoke'
+    conn.sAnnounceOn = 'تم إغلاق المجموعة!  الآن يمكن للمسؤول فقط إرسال الرسائل.'
+    conn.sAnnounceOff = 'المجموعات مفتوحة!  الآن يمكن لجميع المشاركين إرسال الرسائل.'
+    conn.sRestrictOn = 'تم تغيير تعديل معلومات المجموعة إلى المشرف فقط !'
+    conn.sRestrictOff = 'لقد تم تغيير معلومات المجموعة التحريرية لجميع المشاركين !'
 
     conn.handler = handler.handler.bind(global.conn)
     conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
