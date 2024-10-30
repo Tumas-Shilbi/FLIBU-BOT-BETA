@@ -159,7 +159,7 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 				forwardedNewsletterMessageInfo: {
 					newsletterJid: idchannel,
 					serverMessageId: null,
-					newsletterName: `⌜ ${info.namabot} ⌟ || Channel Information`,
+					newsletterName: `⌜ ${info.namabot} ⌟ || 𝙵𝙻𝙸𝙱𝚄 - 𝙱𝙾𝚃 𝙲𝙷𝙰𝙽𝙽𝙴𝙻`,
 				},
 				externalAdReply: {
 					showAdAttribution: true,
@@ -201,20 +201,20 @@ function clockString(ms) {
 }
 
 function ucapan() {
-	const hour_now = moment.tz('Asia/Jakarta').format('HH')
-	var ucapanWaktu = 'Selamat pagi'
+	const hour_now = moment.tz('Africa/Casablanca').format('HH')
+	var ucapanWaktu = 'صباح الخير'
 	if (hour_now >= '03' && hour_now <= '10') {
-		ucapanWaktu = 'Selamat pagi'
+		ucapanWaktu = 'صباح الخير'
 	} else if (hour_now >= '10' && hour_now <= '15') {
-		ucapanWaktu = 'Selamat siang'
+		ucapanWaktu = 'ظهيرة مبسوطة🙂'
 	} else if (hour_now >= '15' && hour_now <= '17') {
-		ucapanWaktu = 'Selamat sore'
+		ucapanWaktu = 'عشية سعيدة🙂'
 	} else if (hour_now >= '17' && hour_now <= '18') {
-		ucapanWaktu = 'Selamat sore'
+		ucapanWaktu = 'عشية سعيدة🙂'
 	} else if (hour_now >= '18' && hour_now <= '23') {
-		ucapanWaktu = 'Selamat malam'
+		ucapanWaktu = 'طاب مساءك'
 	} else {
-		ucapanWaktu = 'Selamat malam'
+		ucapanWaktu = 'مساء الخير'
 	}
 	return ucapanWaktu
 }
