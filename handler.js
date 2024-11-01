@@ -626,17 +626,17 @@ let mentionedJid = [m.sender]
 let name = conn.getName(m.sender)
 
 let msg = {
-    premium: 'Fitur ini hanya dapat digunakan oleh pengguna *premium*',
-    group: 'Fitur ini hanya dapat digunakan dalam grup',       
-    private: 'Fitur ini hanya dapat digunakan dalam private chat',       
-    botAdmin: 'Jadikan bot sebagai admin agar bot dapat mengakses grup',
-    admin: 'Fitur ini hanya dapat digunakan oleh para *admin grup*',
-    restrict: 'Restrict tidak di nyalakan pada bot ini',
+    premium: 'لا يمكن استخدام هذه الميزة إلا من قبل المستخدمين *premium*',
+    group: '*لا يمكن استخدام هذه الميزة إلا في مجموعات*',       
+    private: '*لا يمكن استخدام هذه الميزة إلا في الدردشة الخاصة*',       
+    botAdmin: '*اجعل الروبوت مسؤولاً حتى يتمكن الروبوت من الوصول إلى المجموعة*',
+    admin: '*لا يمكن استخدام هذه الميزة إلا* *بواسطة مسؤولي المجموعة*',
+    restrict: 'لم يتم تفعيل التقييد على هذا الروبوت',
     game: 'Fitur *game* tidak di nyalakan pada chat ini',
-    rpg: 'Fitur *rpg* tidak di nyalakan pada chat ini',
-    nsfw: 'Fitur *nsfw* tidak di nyalakan pada chat ini',
-    rowner: 'Fitur ini hanya dapat digunakan oleh *real owner*',
-    owner: 'Fitur ini hanya dapat digunakan oleh *owner*',
+    rpg: 'ميزة *rpg* لم يتم تشغيله في هذه الدردشة',
+    nsfw: 'ميزة *nsfw* لم يتم تشغيله في هذه الدردشة',
+    rowner: 'هذه الميزة يمكن أن تكون فقط يستخدم من قبل *real مالك*',
+    owner: 'لا يمكن استخدام هذه الميزة إلا من خلال *owner*',
     unreg: `Untuk mengakses fitur ini, kamu harus \`\`\`mendaftar ke bot\`\`\` terlebih dahulu.\n\nCara Mendaftar:\n*/registrasi*`
         }[type]
         
@@ -644,7 +644,7 @@ let msg = {
       text: msg, 
       contextInfo: {
       externalAdReply: {
-      title: 'A C C E S S - D E N I E D',
+      title: 'تـــم الـــرفـــض',
       body: info.wm,
       thumbnailUrl: url.akses,
       sourceUrl: url.sid,
@@ -655,19 +655,19 @@ let msg = {
         }
 
 function ucapan() {
-  const time = moment.tz('Asia/Jakarta').format('HH')
-  let res = "Selamat malam 🌙"
+  const time = moment.tz('Africa/Casablanca').format('HH')
+  let res = "طاب مساؤك 🌙"
   if (time >= 4) {
-    res = "Selamat Pagi 🌄"
+    res = "صباح الخير 🌄"
   }
   if (time >= 10) {
-    res = "Selamat Siang ☀️"
+    res = "مساء الخير ☀️"
   }
   if (time >= 15) {
-    res = "Selamat Sore 🌇"
+    res = "مساء الخير 🌇"
   }
   if (time >= 18) {
-    res = "Selamat Malam 🌙"
+    res = "طاب مساؤك 🌙"
   }
   return res
 }
