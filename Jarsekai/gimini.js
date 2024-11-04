@@ -42,7 +42,7 @@ let handler = async (message, { text, conn, usedPrefix, command }) => {
 };
 
 handler.help = ["gemini"];
-handler.tags = ["AI"];
+handler.tags = ["ai"];
 handler.command = ["جيم","gem","gemini","بوت"];
 
 export default handler;
