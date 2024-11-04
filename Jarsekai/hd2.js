@@ -27,7 +27,7 @@ let jarsepay = async (m, { text, conn }) => {
 };
 
 jarsepay.help = ["hd2"];
-jarsepay.tags = ["tools"];
+jarsepay.tags = ["image-edit"];
 jarsepay.command = ['hd2'];
 export default jarsepay;
 
