@@ -15,7 +15,7 @@ const jarsepay = async (m, {conn, usedPrefix, command}) => {
  }
 };
 jarsepay.help = ["remini", "hd"];
-jarsepay.tags = ["tools"];
+jarsepay.tags = ["image-edit"];
 jarsepay.command = ["", "hd", "remini"];
 export default jarsepay;
 
