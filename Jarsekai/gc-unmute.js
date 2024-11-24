@@ -1,7 +1,7 @@
 let jarsepay = async (m, { conn, usedPrefix }) => {
 	let chat = global.db.data.chats[m.chat]
 	if (chat.isBanned === false) {
-		m.reply('*لم يتم كتم صوت هذه الدردشة*.')
+		m.reply('*لم يتم تعطيل البوت في هذه الدردشة*.')
 		return
 	}
 	chat.isBanned = false
