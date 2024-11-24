@@ -58,6 +58,6 @@ let handler = async (m, { text, usedPrefix, command, conn }) => {
 };
 
 handler.help = ['intro'];
-handler.tags = ['fun'];
+handler.tags = ['infobot'];
 handler.command = ['intro']
 
