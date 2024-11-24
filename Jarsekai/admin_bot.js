@@ -4,6 +4,7 @@ let handler = async (m, { conn }) => {
 *「 معلومات عن صاحب البوت 」*
 
 *Number :*\nwa.me/212645106267
+
 *instagram:*\ninstagram.com/dj_flibu_remix
 
 *youtube:*\nyoutube.com/@FLIBU_GAMING
