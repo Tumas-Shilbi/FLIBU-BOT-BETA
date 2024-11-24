@@ -1,11 +1,11 @@
 let jarsepay = async (m, { conn, usedPrefix }) => {
 	let chat = global.db.data.chats[m.chat]
 	if (chat.isBanned === false) {
-		m.reply('Chat ini tidak dalam keadaan mute.')
+		m.reply('*لم يتم كتم صوت هذه الدردشة*.')
 		return
 	}
 	chat.isBanned = false
-	await m.reply('Bot berhasil di unmute pada chat ini.')
+	await m.reply('*✅  تم تفعيل البوت في هذه المجموعة*.')
 }
 jarsepay.help = ['unmute']
 jarsepay.tags = ['group']
