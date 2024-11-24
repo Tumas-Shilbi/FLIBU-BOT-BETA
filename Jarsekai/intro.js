@@ -59,6 +59,5 @@ let handler = async (m, { text, usedPrefix, command, conn }) => {
 
 handler.help = ['intro'];
 handler.tags = ['fun'];
-handler.command = /^|intro|duction$/i;
+handler.command = ['intro']
 
-export default handler;
