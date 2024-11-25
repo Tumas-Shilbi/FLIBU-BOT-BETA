@@ -25,6 +25,6 @@ const jarsepay = async (m, { conn, text }) => {
 };
 
 jarsepay.command = jarsepay.help = ["apk"];
-jarsepay.tags = ["download"];
+jarsepay.tags = ["applications"];
 
 export default jarsepay;
