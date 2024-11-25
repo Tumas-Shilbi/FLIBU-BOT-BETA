@@ -12,7 +12,7 @@ let handler = async (m, { conn, text }) => {
 
   const url = `https://some-random-api.com/canvas/misc/tweet?displayname=${encodeURIComponent(displayName)}&username=${encodeURIComponent(username)}&avatar=${encodeURIComponent(avatar)}&comment=${encodeURIComponent(text)}&replies=${encodeURIComponent(replies)}&retweets=${encodeURIComponent(retweets)}&theme=${encodeURIComponent(theme)}`
 
-  conn.sendFile(m.chat, url, 'tweet.png', '*شكرا على التغريد 😊♥️*', m)
+  conn.sendFile(m.chat, url, 'tweet.png', '*شكرا على التغريد 😊♥️*\n\n*www.instageam.com/dj_flibu_remix*', m)
 }
 
 handler.help = ['tweet <comment>']
