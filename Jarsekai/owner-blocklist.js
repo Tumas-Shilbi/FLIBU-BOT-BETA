@@ -15,7 +15,7 @@ let handler = async (m, { conn }) => {
     })
 }
 handler.help = ['blocklist']
-handler.tags = ['main']
+handler.tags = ['info']
 handler.command = ['blocklist', 'listblock']
 handler.rowner = true
 export default handler
