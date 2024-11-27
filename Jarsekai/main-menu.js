@@ -4,7 +4,6 @@ import { platform } from 'node:process'
 import os from 'os'
 
 let tags = {
-	"advanced": "Advanced",
 	"info": "Info",
 	"main": "Main",
 	"owner": "Owner",
@@ -31,10 +30,10 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 		let d = new Date(new Date + 3600000)
 		let locale = 'id'
 		const dd = new Date('2023-01-01')
-		const locales = 'en'
-		const wib = moment.tz('Asia/Jakarta').format("HH:mm:ss")
-		const wita = moment.tz('Asia/Makassar').format("HH:mm:ss")
-		const wit = moment.tz('Asia/Jayapura').format("HH:mm:ss")
+		const locales = 'ar'
+		const wib = moment.tz('Africa/Casablanca').format("HH:mm:ss")
+		const wita = moment.tz('Africa/Casablanca').format("HH:mm:ss")
+		const wit = moment.tz('Africa/Casablanca').format("HH:mm:ss")
 		let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
 		let week = d.toLocaleDateString(locale, {
 			weekday: 'long'
