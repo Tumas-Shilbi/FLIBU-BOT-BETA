@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import yts from "yt-search";
 
-let jarsepay = async (m, { conn, text }) => {
+let handler = async (m, { conn, text }) => {
     if (!text) {
         return m.reply("❀ *الرجاء إدخال النص الذي تريد البحث عنه* 🤔");
     }
@@ -63,8 +63,8 @@ let jarsepay = async (m, { conn, text }) => {
     }
 };
 
-jarsepay.tags = ['downloader-youtube'];
-jarsepay.help = ['play'];
-jarsepay.command = /^(play)$/i;
+handler.tags = ['downloader-youtube'];
+handler.help = ['play'];
+handler.command = /^(play)$/i;
 
-export default jarsepay;
+export default handler;
