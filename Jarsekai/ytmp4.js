@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 let jarsepay = async (m, { conn, text }) => {
-  if (!text) return conn.reply(m.chat, `❀ *الرجاء إدخال رابط من اليوتيوب* 📹\n*.ytmp4* https://youtu.be/Xvat-B1Ysww?si=UqYNZKH_3dRF5MrP\n\n🔽 مثال: *.ytmp4 https://youtu.be/xxxxxxx*`, m);
+  if (!text) return conn.reply(m.chat, `❀ *الرجاء إدخال رابط من اليوتيوب* 📹\n*.ytmp4* https://youtu.be/Xvat-B1Ysww?si=UqYNZKH_3dRF5MrP`, m);
 
   try {
     conn.reply(m.chat, `⌛️ *جاري معالجة الفيديو...* 🕒`, m);  // إظهار رسالة التحميل أثناء المعالجة
