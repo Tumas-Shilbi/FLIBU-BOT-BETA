@@ -39,7 +39,6 @@
     "human-readable": "^0.2.1",
     "jimp": "^0.16.1",
     "jsdom": "^19.0.0",
-    "libphonenumber-js": "^1.11.17",
     "link-preview-js": "^3.0.5",
     "lodash": "^4.17.21",
     "lowdb": "^5.0.5",
@@ -60,7 +59,6 @@
     "wa-sticker-formatter": "^4.3.2",
     "ws": "^8.14.2",
     "xmldom": "^0.6.0",
-    "yargs": "^17.7.1",
-    "yt-search": "^2.12.1"
+    "yargs": "^17.7.1"
   }
 }
