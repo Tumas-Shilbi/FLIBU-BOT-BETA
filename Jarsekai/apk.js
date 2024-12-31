@@ -1,30 +1,37 @@
-import axios from 'axios';
+import fetch from 'node-fetch'
 
-const jarsepay = async (m, { conn, text }) => {
-    if (!text) return m.reply("Please enter a query!");
+let handler = async (m, { conn, text }) => {
+    if (!text) {
+        return m.reply("❀ *الرجاء إدخال اسم التطبيق الذي تريد البحث عنه* 🤔");
+    }
 
     try {
-        m.reply("Please wait while processing!");
+        // رسالة "انتظر" قبل البحث
+        await conn.reply(m.chat, "❀ *انتظر قليلاً... جاري البحث عن التطبيق* ⏳", m);
 
-        let { data } = await axios({
-            method: 'GET',
-            url: `https://manaxu-seven.vercel.app/api/tools/apk?query=${encodeURIComponent(text)}`
-        });
+        let api = await fetch(`https://api.giftedtech.my.id/api/download/apkdl?apikey=gifted&appName=${text}`);
+        let json = await api.json();
+        let { appname, appicon, developer, download_url, mimetype } = json.result;
+        let txt = `- *الاسم* : ${appname}
+- *المطور* : ${developer}`;
 
-        const { name, download } = data.result;
-        conn.sendMessage(m.chat, {
-            document: { url: download },
-            mimetype: 'application/vnd.android.package-archive',
-            fileName: `${name}.apk`,
-            caption: null
-        }, { quoted: m });
+        // إرسال أيقونة التطبيق
+        await conn.sendFile(m.chat, appicon, 'HasumiBotFreeCodes.jpg', txt, m);
 
-    } catch (e) {
-        return m.reply("Feature error");
+        // إرسال ملف الـ APK
+        await conn.sendMessage(m.chat, { document: { url: download_url }, mimetype: mimetype, fileName: appname + '.apk', caption: null }, {quoted: m});
+
+        // رسالة "تم التحميل بنجاح"
+        await conn.reply(m.chat, "❀ *تم التحميل بنجاح!* 🎉", m);
+
+    } catch (error) {
+        console.error(error);
+        return m.reply("❀ *حدث خطأ أثناء تحميل التطبيق* 😣");
     }
 };
 
-jarsepay.command = jarsepay.help = ["apk"];
-jarsepay.tags = ["applications"];
+handler.command = /^(apk)$/i;
+handler.help = ['apk'];
+handler.tags = ['applications'];
 
-export default jarsepay;
+export default handler;
