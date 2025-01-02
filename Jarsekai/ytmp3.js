@@ -79,7 +79,7 @@ let jarsepay = async (m, { conn, text, usedPrefix, command }) => {
 };
 
 // تعريف المساعدة والأوامر
-jarsepay.tags = ['downloader-youtube'];
+jarsepay.tags = ['downloader'];
 jarsepay.help = ['ytmp3'];
 jarsepay.command = ['ytmp3'];
 
