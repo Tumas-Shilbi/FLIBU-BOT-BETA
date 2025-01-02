@@ -1,12 +1,28 @@
 import fetch from 'node-fetch'
 
-let jarsepay = async (m, { conn, text }) => {
+let jarsepay = async (m, { conn, text, usedPrefix, command }) => {
+    const react = {
+        react: {
+            text: "⏳",  // رد إيموجي عند انتظار
+            key: m.key
+        }
+    }
+    const reactdone = {
+        react: {
+            text: "✅",  // رد إيموجي عند النجاح
+            key: m.key
+        }
+    }
+
     // التحقق من وجود رابط
-    if (!text) return conn.reply(
-        m.chat, 
-        `❀ *ادخال رابط من اليوتيوب* 🎥\n*.ytmp3* https://youtu.be/Xvat-B1Ysww?si=UqYNZKH_3dRF5MrP`, 
-        m
-    );
+    if (!text) {
+        await conn.sendMessage(m.chat, react);  // إرسال رمز تعبيري "⏳" عند الإدخال الخاطئ
+        return conn.reply(
+            m.chat, 
+            `❀ *ادخال رابط من اليوتيوب* 🎥\n*.ytmp3* https://youtu.be/Xvat-B1Ysww?si=UqYNZKH_3dRF5MrP`, 
+            m
+        );
+    }
 
     // إعلام المستخدم ببدء التحميل
     await conn.reply(m.chat, "*❀ يتم الآن معالجة طلبك. ⏳ يرجى الانتظار قليلاً... 🎶*", m);
@@ -44,8 +60,8 @@ let jarsepay = async (m, { conn, text }) => {
         await conn.sendMessage(m.chat, { react: { text: '🎉', key: sentMsg.key } });
 
         // إعلام المستخدم بنجاح العملية
-        await conn.reply(m.chat, `*❀ ✅  تم  تحميله بنجاح*  🎶  \n 
-*${title}*`, m);
+        await conn.reply(m.chat, `*❀ ✅  تم  تحميله بنجاح*  🎶  \n*${title}*`, m);
+        await conn.sendMessage(m.chat, reactdone);  // رد "✅" عند النجاح
 
     } catch (error) {
         console.error(error);
