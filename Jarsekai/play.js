@@ -1,8 +1,9 @@
 import fetch from "node-fetch";
 import yts from "yt-search";
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) {
+        await conn.sendMessage(m.chat, { react: { text: "⏳", key: m.key } }); // رد فعل عند الإدخال الخاطئ
         return m.reply("❀ *الرجاء إدخال النص الذي تريد البحث عنه* 🤔");
     }
 
@@ -10,6 +11,7 @@ let handler = async (m, { conn, text }) => {
     let video = ytres.videos[0];
 
     if (!video) {
+        await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } }); // رد فعل عند عدم العثور على الفيديو
         return m.reply("❀ *الفيديو غير موجود* 😔");
     }
 
@@ -38,6 +40,9 @@ let handler = async (m, { conn, text }) => {
 
     await conn.reply(m.chat, HS, m, JT);
 
+    // رد فعل "⏳" عند بدء التحميل
+    await conn.sendMessage(m.chat, { react: { text: "⏳", key: m.key } });
+
     // رسالة "انتظر" قبل تحميل الصوت
     await conn.reply(m.chat, "❀ *انتظر قليلاً... جاري تحميل الصوت* ⏳", m);
 
@@ -54,16 +59,20 @@ let handler = async (m, { conn, text }) => {
             await conn.sendMessage(m.chat, { react: { text: '🎉', key: sentMsg.key } });
         }, 2000); // تأخير 2 ثانية قبل إضافة رد الفعل (منبثق)
 
+        // رد فعل "✅" بعد إتمام التحميل بنجاح
+        await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
+
         // رسالة إتمام التحميل
         await conn.reply(m.chat, "❀ *تم التحميل بنجاح!* 🎉", m);
 
     } catch (error) {
         console.error(error);
+        await conn.sendMessage(m.chat, { react: { text: "❌", key: m.key } }); // رد فعل عند حدوث خطأ
         return m.reply("❀ *حدث خطأ أثناء تحميل الصوت* 😣");
     }
 };
 
-handler.tags = ['downloader-youtube'];
+handler.tags = ['downloder'];
 handler.help = ['play'];
 handler.command = /^(play)$/i;
 
