@@ -76,3 +76,4 @@ handler.tags = ['downloader'];
 handler.help = ['play'];
 handler.command = /^(play)$/i;
 
+export default handler;
