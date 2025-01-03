@@ -173,6 +173,17 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 		}, {
 			quoted: m
 		})
+
+		// **إرسال المقطع الصوتي**
+		const audioUrl = 'https://qu.ax/DDjLA.mp3' // رابط المقطع الصوتي
+		conn.sendMessage(m.chat, {
+			audio: { url: audioUrl },
+			mimetype: 'audio/mp4',
+			ptt: false, // اجعلها true إذا كنت تريد إرساله كمقطع صوتي (PTT)
+		}, {
+			quoted: m
+		})
+
 	} catch (error) {
 		console.error(error)
 		throw 'Error: ' + error.message
