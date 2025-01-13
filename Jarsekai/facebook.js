@@ -34,6 +34,6 @@ let HS = async (m, { conn, text }) => {
 
 HS.command = ['facebook'];
 HS.tags = ['downloader'];
-HS.help = ['*facebook'];
+HS.help = ['facebook'];
 
 export default HS;
