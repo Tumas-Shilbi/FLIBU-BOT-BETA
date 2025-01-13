@@ -8,6 +8,7 @@ let tags = {
 	"main": "Main",
 	"owner": "Owner",
 }
+
 const defaultMenu = {
 	before: `
 👋 %ucapan %taguser
@@ -18,6 +19,7 @@ const defaultMenu = {
 	footer: '',
 	after: info.wm,
 }
+
 let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 	try {
 		let { exp, limit, level, role } = global.db.data.users[m.sender]
@@ -29,8 +31,6 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 		let ucapans = ucapan()
 		let d = new Date(new Date + 3600000)
 		let locale = 'id'
-		const dd = new Date('2023-01-01')
-		const locales = 'ar'
 		const wib = moment.tz('Africa/Casablanca').format("HH:mm:ss")
 		const wita = moment.tz('Africa/Casablanca').format("HH:mm:ss")
 		const wit = moment.tz('Africa/Casablanca').format("HH:mm:ss")
@@ -149,6 +149,7 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 		}
 		text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
 
+		// إرسال الرد
 		conn.sendMessage(m.chat, {
 			text: await style(text),
 			contextInfo: {
@@ -175,16 +176,23 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 		})
 
 		// **إرسال المقطع الصوتي**
-		const audioUrl = 'https://qu.ax/DDjLA.mp3' // رابط المقطع الصوتي
+		const audioUrl = 'https://qu.ax/DDjLA.mp3'; // رابط المقطع الصوتي
 		conn.sendMessage(m.chat, {
 			audio: { url: audioUrl },
 			mimetype: 'audio/mp4',
 			ptt: false, // اجعلها true إذا كنت تريد إرساله كمقطع صوتي (PTT)
 		}, {
 			quoted: m
-		})
+		}).then((audioMessage) => {
+			// **تفاعل مع المقطع الصوتي باستخدام الإيموجي 😂**
+			conn.sendMessage(m.chat, { react: { text: "😂", key: audioMessage.key } });
+		});
 
-	} catch (error) {
+		// **تفاعل مع الأمر menu باستخدام الإيموجي 📁**
+		conn.sendMessage(m.chat, { react: { text: "📁", key: m.key } });
+
+	}
+	catch (error) {
 		console.error(error)
 		throw 'Error: ' + error.message
 	}
@@ -204,10 +212,16 @@ function pickRandom(list) {
 }
 
 function clockString(ms) {
-	let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-	let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-	let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-	return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+	let d = Math.floor(ms / 86400000) // عدد الأيام
+	let h = Math.floor(ms % 86400000 / 3600000) // عدد الساعات
+	let m = Math.floor(ms % 86400000 % 3600000 / 60000) // عدد الدقائق
+	let s = Math.floor(ms % 86400000 % 3600000 % 60000 / 1000) // عدد الثواني
+	return [
+		d > 9 ? d : '0' + d,
+		h > 9 ? h : '0' + h,
+		m > 9 ? m : '0' + m,
+		s > 9 ? s : '0' + s
+	].join(':') // النتيجة بالتنسيق "DD:HH:MM:SS"
 }
 
 function ucapan() {
@@ -227,11 +241,4 @@ function ucapan() {
 		ucapanWaktu = 'مساء الخير'
 	}
 	return ucapanWaktu
-}
-
-async function getRAM() {
-	const {
-		totalmem
-	} = await import('os')
-	return Math.round(totalmem / 1024 / 1024)
 }
