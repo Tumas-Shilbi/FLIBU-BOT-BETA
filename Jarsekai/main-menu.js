@@ -9,10 +9,10 @@ let tags = {
 	"owner": "Owner",
 }
 
-const defaultMenu = {
-	before: `
-👋 %ucapan %taguser
-%readmore
+const defaultMenu = { before: `%taguser                        
+
+%ucapan 
+\n%readmore
 `.trimStart(),
 	header: '`%category`',
 	body: '> %cmd %islimit %isPremium',
@@ -188,9 +188,6 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 			conn.sendMessage(m.chat, { react: { text: "😂", key: audioMessage.key } });
 		});
 
-		// **تفاعل مع الأمر menu باستخدام الإيموجي 📁**
-		conn.sendMessage(m.chat, { react: { text: "📁", key: m.key } });
-
 	}
 	catch (error) {
 		console.error(error)
@@ -226,19 +223,19 @@ function clockString(ms) {
 
 function ucapan() {
 	const hour_now = moment.tz('Africa/Casablanca').format('HH')
-	var ucapanWaktu = 'صباح الخير'
-	if (hour_now >= '03' && hour_now <= '10') {
-		ucapanWaktu = 'صباح الخير'
-	} else if (hour_now >= '10' && hour_now <= '15') {
-		ucapanWaktu = 'ظهيرة مبسوطة🙂'
-	} else if (hour_now >= '15' && hour_now <= '17') {
-		ucapanWaktu = 'عشية سعيدة🙂'
-	} else if (hour_now >= '17' && hour_now <= '18') {
-		ucapanWaktu = 'عشية سعيدة🙂'
-	} else if (hour_now >= '18' && hour_now <= '23') {
-		ucapanWaktu = 'طاب مساءك'
-	} else {
-		ucapanWaktu = 'مساء الخير'
-	}
+var ucapanWaktu = '*صباح الخير 🌅*' 
+if (hour_now >= '03' && hour_now <= '10') {
+    ucapanWaktu = '*صباح الخير 🌅*' 
+} else if (hour_now >= '10' && hour_now <= '15') {
+    ucapanWaktu = '*ظهيرة سعيدة ☀️*' 
+} else if (hour_now >= '15' && hour_now <= '17') {
+    ucapanWaktu = '*عشية سعيدة 🌇*' 
+} else if (hour_now >= '17' && hour_now <= '18') {
+    ucapanWaktu = '*عشية سعيدة 🌇*' 
+} else if (hour_now >= '18' && hour_now <= '23') {
+    ucapanWaktu = '*مساء الخير 🌙*' 
+} else {
+    ucapanWaktu = '*مساء الخير 🌙*' 
+}
 	return ucapanWaktu
 }
