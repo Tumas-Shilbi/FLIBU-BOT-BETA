@@ -1,10 +1,16 @@
-let handler = async (m, { conn }) => {
-  await conn.removeProfilePicture(conn.user.jid)
-  m.reply('تم بنجاح حذف صورة البروفايل الخاص بالبوت.')
-}
+let handler = async (m, { conn, isOwner }) => {
+  // التحقق إذا كان المستخدم هو Owner
+  if (!isOwner) {
+    return m.reply("*❌ هذه الميزة مخصصة للـ Owner فقط.*");
+  }
 
-handler.help = ['delprobot']
-handler.tags = ['owner']
-handler.command = /^(delprobot)$/i
+  // حذف صورة البروفايل الخاص بالبوت
+  await conn.removeProfilePicture(conn.user.jid);
+  m.reply('تم بنجاح حذف صورة البروفايل الخاص بالبوت.');
+};
 
-export default handler
+handler.help = ['delprobot'];
+handler.tags = ['owner'];
+handler.command = /^(delprobot)$/i;
+
+export default handler;
