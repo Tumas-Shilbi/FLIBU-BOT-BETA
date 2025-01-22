@@ -176,7 +176,7 @@ let jarsepay = async (m, { conn, usedPrefix: _p, text }) => {
 		})
 
 		// **إرسال المقطع الصوتي**
-		const audioUrl = 'https://qu.ax/DDjLA.mp3'; // رابط المقطع الصوتي
+		const audioUrl = 'https://files.catbox.moe/27db2j.mp3'; // رابط المقطع الصوتي
 		conn.sendMessage(m.chat, {
 			audio: { url: audioUrl },
 			mimetype: 'audio/mp4',
