@@ -1,47 +1,40 @@
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) return conn.reply(m.chat, `❀ *يرجى إدخال رابط يوتيوب*\n\n❀ *مثل :* \n*.ytmp4* *https://youtu.be/Xvat-B1Ysww?si=UqYNZKH_3dRF5MrP*`, m)
-
+let HS = async (m, { conn, command, text, usedPrefix }) => {
+    if (!text) {
+        return conn.reply(m.chat, '*❀ أدخل رابط من يوتيوب*', m)
+    }
+    // رسالة انتظار
+    await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
     try {
-        let api = await fetch(`https://apidl.asepharyana.cloud/api/downloader/ytmp4?url=${text}&quality=360`)
+        let api = await fetch(`https://api.davidcyriltech.my.id/download/ytmp4?url=${text}`)
         let json = await api.json()
-        let { title, author, authorUrl, lengthSeconds, views, uploadDate, thumbnail, description, duration, downloadUrl, quality } = json
-        let HS = `- *العنوان :* ${title}
-- *الكاتب :* ${author}
-- *عدد المشاهدات :* ${views}
-- *تاريخ التحميل :* ${uploadDate}
-- *المدة :* ${duration}
-- *الجودة :* ${quality}p`
-        
-        // إرسال رسالة انتظار
-        await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
-        
-        // إرسال الفيديو
-        const sentMsg = await conn.sendMessage(m.chat, { video: { url: downloadUrl }, caption: HS }, { quoted: m })
-        
-        // إرسال رسالة نجاح
-        await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
-        
-        // إرسال التفاعل 🎉 بعد تحميل الفيديو بنجاح
-        await conn.sendMessage(m.chat, { react: { text: '🎉', key: sentMsg.key } })
-        
-        // إضافة حساب الإنستغرام مع التنسيق المطلوب
-        const instagramLink = "*https://instagram.com/dj_flibu_remix*"
-        const successMessage = `✅ تم تحميل الفيديو بنجاح!\n\n*لمزيد من التحديثات، تابعنا على إنستغرام :*\n\n${instagramLink}`
-        const successMsg = await conn.sendMessage(m.chat, { text: successMessage })
+        let { title, quality, thumbnail, download_url } = json.result
 
-        // إرسال التفاعل ✅ على الرسالة الخاصة بحساب الإنستغرام
-        await conn.sendMessage(m.chat, { react: { text: '✅', key: successMsg.key } })
+        // إرسال صورة الفيديو والمعلومات مع تكبير الخط باستخدام * للعناوين
+        await conn.sendMessage(m.chat, {
+            image: { url: thumbnail },
+            caption: `*📹 العنوان:* ${title}\n
+*🎶 الجودة:* ${quality}\n
+*🎥 رابط الفيديو:* ${download_url}\n
+*❀ حسابي انستغرام :* \n
+*instagram.com/dj_flibu_remix*
+\n*❀ مطور البوت :* \n
+*https://wa.me/212645106267*`,
+        }, { quoted: m })
+
+        // إرسال الفيديو مع الرد مع تكبير النص
+        await conn.sendMessage(m.chat, { video: { url: download_url }, caption: `*${title}*` }, { quoted: m })
+
+        // رسالة نجاح
+        await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
     } catch (error) {
         console.error(error)
-        // رسالة خطأ مع التنسيق الصحيح
-        await conn.sendMessage(m.chat, { text: "*❌ حدث خطأ أثناء العملية.*" })
+        // رسالة خطأ
+        await conn.sendMessage(m.chat, '*❌ حدث خطأ أثناء العملية.*', { react: { text: '❌', key: m.key } })
     }
 }
 
-handler.tags = ['downloader']
-handler.help = ['ytmp4']
-handler.command = ['ytmp4']
+HS.command = ['ytmp4']
 
-export default handler
+export default HS
