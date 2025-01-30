@@ -1,95 +1,72 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, command, text, usedPrefix }) => {
-    const react = {
-        react: {
-            text: "⏳",  // رد إيموجي عند الانتظار
-            key: m.key,
-        },
-    };
-    const reactdone = {
-        react: {
-            text: "✅",  // رد إيموجي عند النجاح
-            key: m.key,
-        },
-    };
+  const react = {
+    react: {
+      text: "⏳", // رد إيموجي عند الانتظار
+      key: m.key,
+    },
+  };
+  const reactdone = {
+    react: {
+      text: "✅", // رد إيموجي عند النجاح
+      key: m.key,
+    },
+  };
 
-    // التحقق من وجود رابط
-    if (!text) {
-        await conn.sendMessage(m.chat, react);  // إرسال رمز تعبيري "⏳" عند الإدخال الخاطئ
-        return conn.reply(
-            m.chat,
-            `❀ *ادخال رابط من اليوتيوب* 🎥\n*.ytmp3* https://youtu.be/Xvat-B1Ysww?si=UqYNZKH_3dRF5MrP`,
-            m
-        );
+  if (!text) {
+    await conn.reply(m.chat, '*❀ المرجو إدخال رابط فيديو يوتيوب.*', m);
+    return;
+  }
+
+  try {
+    // إرسال رد انتظار
+    await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
+
+    let api = await fetch(`https://api.davidcyriltech.my.id/download/ytmp3?url=${text}`);
+    let json = await api.json();
+    let { title, download_url, quality, thumbnail } = json.result;
+
+    // إرسال الصورة المصغرة
+    if (thumbnail) {
+      await conn.sendMessage(m.chat, {
+        image: { url: thumbnail },
+        caption: `*المرجو إنتظر لحظة... ⏳*\n\n*📄 العنوان:* ${title}\n
+*🔊 الجودة:* ${quality}\n\n*❀ حسابي انستغرام :* 
+
+*instagram.com/dj_flibu_remix*\n
+*❀ مطور البوت :* 
+
+*https://wa.me/212645106267*`,
+      });
     }
 
-    // إعلام المستخدم ببدء المعالجة
-    await conn.reply(m.chat, "*❀ يتم الآن معالجة طلبك. ⏳ يرجى الانتظار قليلاً... 🎶*", m);
+    // إرسال ملف الموسيقى
+    await conn.sendMessage(m.chat, {
+      audio: { url: download_url },
+      mimetype: "audio/mpeg"
+    }, { quoted: m });
 
-    try {
-        // طلب البيانات من API
-        const api = await fetch(`https://axeel.my.id/api/download/audio?url=${text}`);
-        const json = await api.json();
+    // إرسال رد نجاح
+    await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
 
-        // التحقق من البيانات المطلوبة
-        if (!json.metadata || !json.downloads || !json.downloads.url) {
-            throw new Error("*❀ ⚠️ خطأ: لم يتم العثور على البيانات المطلوبة.*");
-        }
+    await conn.sendMessage(
+      m.chat, 
+      `*✅ تم التحميل بنجاح!*\n رابط الإنستغرام : 
 
-        // استخراج البيانات
-        const { title, views, likes, description, author } = json.metadata;
-        const size = json.downloads.size;
-        const dl_url = json.downloads.url;
+instagram.com/dj_flibu_remix\n
+رقم المطور : 
 
-        // إنشاء رسالة المعلومات
-        const info = `❀ *تم العثور على التفاصيل:* 🎶
-- *العنوان:* ${title}
-- *الوصف:* ${description}
-- *المشاهدات:* ${views}
-- *الإعجابات:* ${likes}
-- *الناشر:* ${author}
-- *الحجم:* ${size}`;
+https://wa.me/212645106267`,
+      { quoted: m }
+    );
 
-        // إرسال التفاصيل للمستخدم
-        await conn.reply(m.chat, info, m);
-
-        // إرسال الملف الصوتي
-        const sentMsg = await conn.sendMessage(
-            m.chat,
-            {
-                audio: { url: dl_url },
-                mimetype: 'audio/mpeg',
-            },
-            { quoted: m }
-        );
-
-        // إضافة رد بإيموجي (React Message)
-        await conn.sendMessage(m.chat, { react: { text: '🎉', key: sentMsg.key } });
-
-        // إعلام المستخدم بنجاح العملية
-        await conn.reply(m.chat, `*❀ ✅ تم تحميل الملف بنجاح!* 🎶 
-\n*تابعني في حسابي :* 
-*instagram.com/dj_flibu_remix*`, m);
-        await conn.sendMessage(m.chat, reactdone);  // رد "✅" عند النجاح
-    } catch (error) {
-        console.error(error);
-
-        // إعلام المستخدم بوجود مشكلة
-        await conn.reply(
-            m.chat,
-            `*❀ ⚠️ حدث خطأ أثناء معالجة طلبك:*\n${error.message || "*❀ حاول مرة أخرى لاحقًا.*"} 😔`,
-            m
-        );
-
-        // إضافة رد بإيموجي عند الخطأ
-        await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-    }
+  } catch (error) {
+    console.error(error);
+    // لم نعد نرسل رسالة الخطأ هنا
+  }
 };
 
-// تعريف المساعدة والأوامر
-handler.tags = ['downloader'];
-handler.help = ['ytmp3'];
-handler.command = /^(ytmp3)$/i;
+handler.command = ['ytmp3'];
 
 export default handler;
