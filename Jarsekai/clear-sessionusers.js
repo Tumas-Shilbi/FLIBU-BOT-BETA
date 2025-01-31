@@ -31,7 +31,8 @@ const handler = async (m, { conn }) => {
   m.reply("*✅ تم حذف جميع الملفات بنجاح باستثناء creds.json.*");
 };
 
-handler.command = handler.help = ["clearsessionusers","sps"];
+handler.command =["clearsessionusers","cs"] 
+handler.help = ["clearsessionusers"];
 handler.tags = ["owner"];
 handler.owner = true;
 export default handler;
