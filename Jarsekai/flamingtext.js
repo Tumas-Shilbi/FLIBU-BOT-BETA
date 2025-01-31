@@ -12,7 +12,6 @@ const models = {
 'blue-logo': 'blue-logo',
 'silver-logo': 'silver-logo',
 'neon-logo': 'neon-logo',
-'skate-name': 'skate-name',
 'retro-logo': 'retro-logo',
 'candy-logo': 'candy-logo',
 'glossy-logo': 'glossy-logo',
@@ -29,14 +28,16 @@ ${modelList}`);
 
 let response = args.join(' ').split('|');
 if (!response[0] || !response[1]) {
-return m.reply(`• مثال:\n${prefix + command} fluffy-logo | flibu bot`);
+return m.reply(`*• مـثـال :*\n
+*.flamingtext* fluffy-logo | flibu bot`);
 }
 
 const model = response[0].trim();
 const textInput = response[1].trim();
 
 if (!models[model]) {
-return m.reply(`❌ النموذج غير صالح. اختر من بين:\n${modelList}`);
+return m.reply(`*❌ النموذج غير صالح. اختر من بين :*\n
+${modelList}`);
 }
 
 m.reply('⏳ *جاري المعالجة طلبك المرجو إنتظر لحظة...*');
