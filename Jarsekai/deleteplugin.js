@@ -41,8 +41,8 @@ let handler = async (
   }
 };
 
-handler.help = ["deleteplugin", "df"];
+handler.help = ["deleteplugin"];
 handler.tags = ["owner"];
-handler.command = /^(df|deleteplugin)$/i;
+handler.command = /^(dp|deleteplugin)$/i;
 handler.owner = true;
 export default handler;
