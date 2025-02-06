@@ -162,13 +162,44 @@ global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 global.pairingCode = true
 
-if (global.pairingCode && !conn.authState.creds.registered) {
-    let phoneNumber = ''
-    if (!phoneNumber) {
-       phoneNumber = await question(chalk.bgGreen(chalk.black(`Nomor WhatsApp Anda: `)))
-    const code = await conn.requestPairingCode(phoneNumber)
-    console.log(chalk.bgGreen(chalk.black(`Kode Pairing: ` + code)))
+async function handlePairingCode(conn) {
+    try {
+        if (global.pairingCode && !conn.authState.creds.registered) {
+            console.log(chalk.whiteBright('› To use the Pairing Code, please enter your WhatsApp number.'))
+            console.log(chalk.whiteBright('› Example: 212645xxxxx'))
+
+            const phoneNumber = await question(chalk.bgGreen(chalk.black(`\nYour WhatsApp Number: `)))
+            const cleanPhoneNumber = phoneNumber.replace(/\D/g,'')
+
+            if (cleanPhoneNumber.length < 10 || cleanPhoneNumber.length > 13) {
+                console.log(chalk.bgRed(chalk.black('\n› Invalid phone number. Please enter a valid number.')))
+            } else {
+                console.log(chalk.cyan('› Generating Code....'))
+
+                try {
+                    const code = await conn.requestPairingCode(cleanPhoneNumber)
+                    const formattedCode = code?.match(/.{1,4}/g)?.join('-') || code
+
+                    console.log(chalk.whiteBright('› Your Pairing Code:'), chalk.bgGreenBright(chalk.black(` ${formattedCode} `)))
+                    console.log(chalk.whiteBright('› Please enter this code in your WhatsApp app.'))
+
+                } catch (error) {
+                    console.log(chalk.bgRed(chalk.black('Failed to generate pairing code:', error.message)))
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error in handlePairingCode:', error)
+    } finally {
+        rl.close()
     }
+}
+
+try {
+    await handlePairingCode(conn)
+} catch (error) {
+    console.error('Error:', error)
+    rl.close()
 }
 
 if (!opts['test']) {
@@ -232,24 +263,9 @@ async function connectionUpdate(update) {
     if (global.db.data == null) loadDatabase()
     if (connection === "open") {
         console.log(chalk.bgGreen(chalk.black(`💃 ${info.namabot} telah aktif`)))
-        conn.sendMessage('212645106267@s.whatsapp.net', {
-            text: `╭───⌜ System Notice ⌟───\n│• Nama Bot: *${info.namabot}*\n│• Nama Pengguna: *${info.namaowner}*\n│• Status Bot: *Online*\n│• Creator Script: *FLIBU BOT*\n│• Github: *https://github.com*\n╰───────\n\nNote: Jangan jual script ini, jika ketahuan maka tidak akan ada update lagi.`,
-            contextInfo: {
-                externalAdReply: {
-                    title: `💃 ${info.namabot} telah aktif`,
-                    body: null,
-                    thumbnailUrl: url.thumb,
-                    sourceUrl: url.sgc,
-                    mediaType: 1,
-                    renderLargerThumbnail: true
-                }
-            }
-        }, {
-            quoted: null
-        })
     }
     if (connection == 'close') {
-        console.log(chalk.yellow(`Koneksi bot terputus! Sedang menyambungkan ulang...`))
+        console.log(chalk.yellow(`تم فقدان اتصال البوت!  إعادة الاتصال...`))
     }
 }
 
@@ -283,18 +299,18 @@ global.reloadHandler = async function(restatConn) {
         conn.ev.off('connection.update', conn.connectionUpdate)
         conn.ev.off('creds.update', conn.credsUpdate)
     }
-    conn.welcome = '👋 مرحبآ بك يا صديقي في المجموعة @user, @subject \n\n\n@desc'
+    conn.welcome = '@user\n 👋 مرحبآ بك يا صديقي في المجموعة ,\n\n*@subject* \n\n*وصف المجموعة :*\n\n@desc'
     conn.bye = '@user 👋 وداعا يا صديقي ، لا تنسى العودة'
-    conn.spromote = '👑 @user تمت ترقيته إلى المشرف'
-    conn.sdemote = '👑 @user تم تخفيض رتبته من المشرف'
+    conn.spromote = '👑 @user تمت ترقيته إلى مدير'
+    conn.sdemote = '👑 @user تم تخفيض رتبته من مشرف'
     conn.sDesc = 'تم تغيير الوصف إلى \n@desc'
-    conn.sSubject = 'تم تغيير اسم المجموعة إلى\n@subject'
-    conn.sIcon = 'تم تغيير صورة الملف الشخصي للمجموعة !'
+    conn.sSubject = 'تم تغيير اسم المجموعة إلى \n@subject'
+    conn.sIcon = 'تم تغيير الصورة الشخصية للمجموعة!'
     conn.sRevoke = 'تم تغيير رابط المجموعة إلى \n@revoke'
-    conn.sAnnounceOn = 'تم إغلاق المجموعة!  الآن يمكن للمسؤول فقط إرسال الرسائل.'
-    conn.sAnnounceOff = 'المجموعات مفتوحة!  الآن يمكن لجميع المشاركين إرسال الرسائل.'
-    conn.sRestrictOn = 'تم تغيير تعديل معلومات المجموعة إلى المشرف فقط !'
-    conn.sRestrictOff = 'لقد تم تغيير معلومات المجموعة التحريرية لجميع المشاركين !'
+    conn.sAnnounceOn = 'لقد تم إغلاق المجموعة!  الآن يمكن للمسؤول فقط إرسال الرسائل.'
+    conn.sAnnounceOff = 'المجموعة مفتوحة!  الآن أصبح بإمكان جميع المشاركين إرسال الرسائل.'
+    conn.sRestrictOn = 'تم تغيير تعديل معلومات المجموعة إلى المسؤول فقط!'
+    conn.sRestrictOff = 'لقد تم تغيير معلومات المجموعة التحريرية لجميع المشاركين!'
 
     conn.handler = handler.handler.bind(global.conn)
     conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
