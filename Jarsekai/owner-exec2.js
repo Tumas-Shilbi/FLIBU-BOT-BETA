@@ -4,7 +4,7 @@ let exec = promisify(_exec).bind(cp)
 
 let jarsepay = async (m, { conn, isOwner, command, text }) => {
 	if (global.conn.user.jid != conn.user.jid) return
-	m.reply('```🛠️ Executing...```')
+	m.reply('🛠️ *تـــنـــفـــيـــذ*...')
 	let o
 	try {
 		o = await exec(command.trimStart() + ' ' + text.trimEnd())
