@@ -16,7 +16,6 @@ global.owner = [
 
 // Info
 global.info = {
-    pairingNumber: '', // Please fill your number starting with your country code, example: '212645106267'
     namaowner: 'ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ',
     nomorowner: '212645106267',
     packname: '𝙱𝚈 ᎿᏬᎷᎯᏕ ᏕᎻᎨᏝᏰᎨ ',
@@ -33,26 +32,19 @@ global.url = {
     thumb: 'https://qu.ax/Wkkdh.jpg',
     logo: 'https://qu.ax/Wkkdh.jpg',
     akses: 'https://qu.ax/Wkkdh.jpg',
-    welcomes: 'https://qu.ax/Wkkdh.jpg',
-    lefts: 'https://qu.ax/Wkkdh.jpg',
+    welcomes: 'https://i.postimg.cc/6pPjhm9T/IMG-20250205-WA0166.jpg',
+    lefts: 'https://i.postimg.cc/pdn0cJTC/IMG-20250205-WA0155.jpg',
     sig: 'https://instagram.com/dj_flibu_remix',
     sgh: 'https://github.com',
-    sgc: '',
-    sdc: 'https://whatsapp.com/channel/0029VafPIGU2975ALj4uYl1g',
+    sgc: 'https://whatsapp.com/channel/0029VafPIGU2975ALj4uYl1g',
+    sdc: 'https://s.id/JK5eM',
     sid: 'https://n9.cl/8pe29'
-}
-
-// Donasi
-global.payment = {
-    psaweria: 'https://saweria.co/renfunix',
-    gopay: '212645106267',
-    dana: '212645106267'
 }
 
 // Message
 global.msg = {
-    wait: 'Sedang menjalankan perintah...',
-    error: 'Terjadi error, harap melapor ke owner melalui */report*.'
+    wait: 'تنفيذ أمر...',
+    error: 'لقد حدث خطأ، يرجى الإبلاغ إلى المالك عبر */report*.'
 }
 
 // Apikey
@@ -60,12 +52,14 @@ global.api = {
     lol: 'GataDios'
 
 }
-global.APIs = {
-    lol: "https://api.lolhumaan.xyz"
-}
 
 global.APIKeys = {
     "https://api.lolhumaan.xyz": "GataDios"
+}
+
+// API
+global.APIs = {
+    lol: "https://api.lolhumaan.xyz"
 }
 
 // RPG & Levelling
