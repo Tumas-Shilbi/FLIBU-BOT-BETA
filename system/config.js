@@ -28,10 +28,10 @@ global.info = {
 
 // Thumbnail 
 global.url = {
-    profil: 'https://i.ibb.co/3Fh9V6p/avatar-contact.png',
-    thumb: 'https://qu.ax/Wkkdh.jpg',
-    logo: 'https://qu.ax/Wkkdh.jpg',
-    akses: 'https://qu.ax/Wkkdh.jpg',
+    profil: 'https://files.catbox.moe/qenvjd.jpg',
+    thumb: 'https://files.catbox.moe/qenvjd.jpg',
+    logo: 'https://files.catbox.moe/qenvjd.jpg',
+    akses: 'https://files.catbox.moe/qenvjd.jpg',
     welcomes: 'https://i.postimg.cc/6pPjhm9T/IMG-20250205-WA0166.jpg',
     lefts: 'https://i.postimg.cc/pdn0cJTC/IMG-20250205-WA0155.jpg',
     sig: 'https://instagram.com/dj_flibu_remix',
