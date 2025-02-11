@@ -35,6 +35,9 @@ let HS = async (m, { conn, command, text, usedPrefix }) => {
     }
 }
 
-HS.command = ['ytmp4']
 
-export default HS
+handler.tags = ['downloader']
+handler.help = ['ytmp4']
+handler.command= ['ytmp4']
+
+export default handler
