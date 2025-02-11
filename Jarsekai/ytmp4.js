@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 
-let HS = async (m, { conn, command, text, usedPrefix }) => {
+let handler = async (m, { conn, command, text, usedPrefix }) => {
     if (!text) {
         return conn.reply(m.chat, '*❀ أدخل رابط من يوتيوب*', m)
     }
