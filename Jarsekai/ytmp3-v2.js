@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let HS = async (m, { conn, text }) => {
+let handler = async (m, { conn, text }) => {
     // *⏳ جاري المعالجة...*
     const reactWaiting = {
         react: { text: "⏳", key: m.key }
@@ -61,8 +61,8 @@ let HS = async (m, { conn, text }) => {
     }
 }
 
-HS.tags = ['downloader']
-HS.help = ['ytmp3-v2']
-HS.command = ['ytmp3-v2'];
+handler.tags = ['downloader']
+handler.help = ['ytmp3-v2']
+handler.command = ['ytmp3-v2']
 
-export default HS;
+export default handler;
