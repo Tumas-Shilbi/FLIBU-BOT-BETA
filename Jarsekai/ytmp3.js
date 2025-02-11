@@ -67,6 +67,8 @@ https://wa.me/212645106267`,
   }
 };
 
+handler.tags = ['downloader']
+handler.help = ['ytmp3']
 handler.command = ['ytmp3'];
 
 export default handler;
