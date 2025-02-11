@@ -1,17 +1,9 @@
-/* Lyrics By WillZek 
-- Free Codes Titan 
-- https://github.com/WillZek
-- https://whatsapp.com/channel/0029ValMlRS6buMFL9d0iQ0S 
-*/
-
-// [⌨️] Letra De Canciones
-
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     if (!text) {
-        await m.reply('*🍭 الرجاء إدخال اسم أغنية.*');
+        await m.reply('*الرجاء إدخال اسم أغنية.*');
         return;
     }
 
