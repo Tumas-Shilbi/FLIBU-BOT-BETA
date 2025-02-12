@@ -299,8 +299,8 @@ global.reloadHandler = async function(restatConn) {
         conn.ev.off('connection.update', conn.connectionUpdate)
         conn.ev.off('creds.update', conn.credsUpdate)
     }
-    conn.welcome = '@user\n 👋 مرحبآ بك يا صديقي في المجموعة ,\n\n*@subject* \n\n*وصف المجموعة :*\n\n@desc'
-    conn.bye = '@user 👋 وداعا يا صديقي ، لا تنسى العودة'
+    conn.welcome = '@user\n 👋 مـرحـبـآ بـك يـا صـديـقـي فـي الـمـجـمـوعـة , \n\n*@subject* \n\n*وصف المجموعة :*\n\n@desc'
+    conn.bye = '@user 👋 وداعـا يـا صـديـقـي ، لا تـعـود إلـى هـنـا الـبــاب تـم حـظـر الـمـسـتـخـدم تـلـقـائـيـآ ⚠️'
     conn.spromote = '👑 @user تمت ترقيته إلى مدير'
     conn.sdemote = '👑 @user تم تخفيض رتبته من مشرف'
     conn.sDesc = 'تم تغيير الوصف إلى \n@desc'
