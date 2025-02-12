@@ -30,8 +30,8 @@ let handler = async (m, { conn, text }) => {
     }
 };
 
-handler.command = /^(apk)$/i;
-handler.help = ['apk'];
-handler.tags = ['applications'];
+handler.command = /^()$/i;
+handler.help = [''];
+handler.tags = [''];
 
 export default handler;
