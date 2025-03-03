@@ -15,7 +15,7 @@ let handler = async (
 ) => {
   const pluginsDir = join(__dirname, "../Jarsekai/");
 
-  // قراءة جميع الملفات في مجلد plugins
+  // التحقق من وجود مجلد Jarsekai
   if (!existsSync(pluginsDir)) {
     throw `*❌ مجلد "Jarsekai" غير موجود.*`;
   }
@@ -35,7 +35,7 @@ let handler = async (
 
   try {
     unlinkSync(file);
-    conn.reply(m.chat, `*✅ تم حذف "Jarsekai${args[0]}.js" بنجاح!*`, m);
+    conn.reply(m.chat, `*✅ تم حذف "Jarsekai/${args[0]}.js" بنجاح!*`, m);
   } catch (error) {
     conn.reply(m.chat, `*❌ حدث خطأ أثناء حذف الملف:* ${error.message}`, m);
   }
