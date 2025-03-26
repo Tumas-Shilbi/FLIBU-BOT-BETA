@@ -56,7 +56,7 @@ let handler = async (m, { conn, text }) => {
 };
 
 handler.tags = ['downloader']
-handler.help = ['spotify url']
-handler.command = /^(spotify|sp)$/i;
+handler.help = ['spotify-url']
+handler.command = /^(spotify-url|sp)$/i;
 
 export default handler;
