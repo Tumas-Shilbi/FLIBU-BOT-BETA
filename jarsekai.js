@@ -140,7 +140,7 @@ const connectionOptions = {
         level: 'fatal'
     }),
     auth: state,
-    browser: ['Linux', 'Chrome', ''],
+    browser: ['Mac OS', 'safari', '5.1.10'],
     version,
     getMessage: async (key) => {
         let jid = jidNormalizedUser(key.remoteJid)
@@ -162,44 +162,19 @@ global.conn = makeWASocket(connectionOptions)
 conn.isInit = false
 global.pairingCode = true
 
-async function handlePairingCode(conn) {
-    try {
-        if (global.pairingCode && !conn.authState.creds.registered) {
-            console.log(chalk.whiteBright('› To use the Pairing Code, please enter your WhatsApp number.'))
-            console.log(chalk.whiteBright('› Example: 212645xxxxx'))
+const usePairingCode = !process.argv.includes('--use-pairing-code')
+const useMobile = process.argv.includes('--mobile')
 
-            const phoneNumber = await question(chalk.bgGreen(chalk.black(`\nYour WhatsApp Number: `)))
-            const cleanPhoneNumber = phoneNumber.replace(/\D/g,'')
-
-            if (cleanPhoneNumber.length < 10 || cleanPhoneNumber.length > 13) {
-                console.log(chalk.bgRed(chalk.black('\n› Invalid phone number. Please enter a valid number.')))
-            } else {
-                console.log(chalk.cyan('› Generating Code....'))
-
-                try {
-                    const code = await conn.requestPairingCode(cleanPhoneNumber)
-                    const formattedCode = code?.match(/.{1,4}/g)?.join('-') || code
-
-                    console.log(chalk.whiteBright('› Your Pairing Code:'), chalk.bgGreenBright(chalk.black(` ${formattedCode} `)))
-                    console.log(chalk.whiteBright('› Please enter this code in your WhatsApp app.'))
-
-                } catch (error) {
-                    console.log(chalk.bgRed(chalk.black('Failed to generate pairing code:', error.message)))
-                }
-            }
-        }
-    } catch (error) {
-        console.error('Error in handlePairingCode:', error)
-    } finally {
-        rl.close()
-    }
-}
-
-try {
-    await handlePairingCode(conn)
-} catch (error) {
-    console.error('Error:', error)
-    rl.close()
+if (usePairingCode && !conn.authState.creds.registered) {
+    if (useMobile) throw new Error('Cannot use pairing code with Mobile API')
+        const { registration } = { registration: {} }
+    let phoneNumber = global.info.pairingNumber
+    console.log(chalk.bgWhite(chalk.blue('Generating code...')))
+    setTimeout(async () => {
+        let code = await conn.requestPairingCode(phoneNumber)
+        code = code?.match(/.{1,4}/g)?.join('-') || code
+        console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
+    }, 3000)
 }
 
 if (!opts['test']) {
@@ -265,7 +240,7 @@ async function connectionUpdate(update) {
         console.log(chalk.bgGreen(chalk.black(`💃 ${info.namabot} telah aktif`)))
     }
     if (connection == 'close') {
-        console.log(chalk.yellow(`تم فقدان اتصال البوت!  إعادة الاتصال...`))
+        console.log(chalk.yellow(`Koneksi bot terputus! Sedang menyambungkan ulang...`))
     }
 }
 
@@ -299,8 +274,8 @@ global.reloadHandler = async function(restatConn) {
         conn.ev.off('connection.update', conn.connectionUpdate)
         conn.ev.off('creds.update', conn.credsUpdate)
     }
-    conn.welcome = '@user\n 👋 مـرحـبـآ بـك يـا صـديـقـي فـي الـمـجـمـوعـة , \n\n*@subject* \n\n*وصف المجموعة :*\n\n@desc'
-    conn.bye = '@user 👋 وداعـا يـا صـديـقـي ، لا تـعـود إلـى هـنـا الـبــاب تـم حـظـر الـمـسـتـخـدم تـلـقـائـيـآ ⚠️'
+    conn.welcome = '@user\n 👋 مـرحـبـآ بـك يـا عــزيــزي أو عــزيــزتــي فـي الـمـجـمـوعـة , \n\n*@subject* \n\n*وصف المجموعة :*\n\n@desc'
+    conn.bye = '@user 👋 وداعـا يـا عــزيــزي أو عــزيــزتــي ، لا تـعـود إلـى هـنـا ولا تـعـودي إلى هـنـا الــبــاب تـم حـظـر الـمـسـتـخـدم أو الـمـسـتـخـدمـة تـلـقـائـيـآ ⚠️'
     conn.spromote = '👑 @user تمت ترقيته إلى مدير'
     conn.sdemote = '👑 @user تم تخفيض رتبته من مشرف'
     conn.sDesc = 'تم تغيير الوصف إلى \n@desc'
